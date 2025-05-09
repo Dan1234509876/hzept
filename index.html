@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Пожертвования</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      margin: 0;
+      color: #f5f5f5;
+    }
+
+    .intro-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .intro-screen h1 {
+      font-size: 32px;
+      color: orange;
+      margin-bottom: 20px;
+    }
+
+    .intro-screen p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .intro-screen button {
+      padding: 12px 24px;
+      background-color: orange;
+      border: none;
+      color: #121212;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .intro-screen button:hover {
+      background-color: #e69500;
+    }
+
+    .donation-container {
+      margin: 120px auto;
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+      text-align: center;
+      width: 340px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #333;
+      border-radius: 5px;
+      overflow: hidden;
+      height: 25px;
+      margin: 20px 0;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0;
+      background-color: orange;
+      transition: width 0.3s ease;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: orange;
+      color: #121212;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #e69500;
+    }
+
+    .photo-inputs {
+      margin: 20px 0;
+    }
+
+    .photo-slot {
+      margin-bottom: 15px;
+    }
+
+    input[type="file"] {
+      color: white;
+    }
+
+    .preview {
+      width: 100%;
+      max-height: 150px;
+      object-fit: cover;
+      margin-top: 5px;
+      border: 1px solid orange;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Интро экран -->
+  <div class="intro-screen" id="intro">
+    <h1>Дисклеймер!</h1>
+    <p>Внимание: данный сайт является шуткой и создан исключительно в развлекательных целях. Все персонажи, болезни и ситуации вымышлены. Любые совпадения с реальностью — случайны (или не очень).</p>
+    <button onclick="startSite()">Продолжить</button>
+    <audio controls>
+      <source src="4.mp3" type="audio/mpeg">
+      Ваш браузер не поддерживает аудио.
+    </audio>
+  </div>
+
+  <!-- Основной контент -->
+  <div id="main-content" style="display: none;">
+    <div class="donation-container">
+      <h1>Помогите Артему Пепси</h1>
+      <h2>Артем Пепси — молодой пикапер, музыкант, мотобрат. Он нуждается в вашей поддержке на лечение от болезни под названием "пубертат" — шишка дымится, а никто не даёт((</h2>
+      <p>Цель: собрать 10,000 ₽</p>
+
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <p id="donated-amount">Собрано: 0 ₽</p>
+
+      <button onclick="donate()">Пожертвовать 500 ₽</button>
+
+      <div class="photo-inputs">
+        <div class="photo-slot">
+          <img id="preview1" class="preview" src="1.jpeg" alt="Фото 1" />
+        </div>
+        <div class="photo-slot">
+          <img id="preview2" class="preview" src="2.jpeg" alt="Фото 2" />
+        </div>
+        <div class="photo-slot">
+          <img id="preview3" class="preview" src="3.jpeg" alt="Фото 3" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let total = 0;
+    const goal = 10000;
+
+    function startSite() {
+      document.getElementById('intro').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      document.getElementById('intro-audio').pause();
+    }
+
+    function donate() {
+      if (total < goal) {
+        total += 500;
+        if (total > goal) total = goal;
+
+        const progressPercent = (total / goal) * 100;
+        document.getElementById("progress").style.width = progressPercent + "%";
+        document.getElementById("donated-amount").innerText = `Собрано: ${total} ₽`;
+
+        if (total === goal) {
+          alert("Ура мы величили Артема и он купит себе стояк риналду!!!");
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
