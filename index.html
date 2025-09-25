@@ -1,186 +1,267 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Пожертвования</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тест по Шреку</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
+      font-family: 'Comic Sans MS', sans-serif;
+      background: url('https://i.postimg.cc/T1p90Jfn/1647057707-1-abrakadabra-fun-p-oboi-na-telefon-shrek-1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
       margin: 0;
-      color: #f5f5f5;
+      padding: 0;
+      overflow-x: hidden;
     }
 
-    .intro-screen {
+    /* --- Интро --- */
+    #intro {
       position: fixed;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.95);
+      width: 100%;
+      height: 100%;
+      background: black;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 20px;
       z-index: 9999;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 3s;
     }
 
-    .intro-screen h1 {
-      font-size: 32px;
-      color: orange;
+    #intro img {
+      width: 120px;
       margin-bottom: 20px;
+      animation: popIn 1s ease;
     }
 
-    .intro-screen p {
-      font-size: 18px;
-      margin-bottom: 30px;
+    #intro h2 {
+      color: #32cd32;
+      font-size: 28px;
+      text-shadow: 2px 2px 5px #000;
+      animation: popIn 1.5s ease;
     }
 
-    .intro-screen button {
-      padding: 12px 24px;
-      background-color: orange;
-      border: none;
-      color: #121212;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
+    @keyframes popIn {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
     }
 
-    .intro-screen button:hover {
-      background-color: #e69500;
+    @keyframes fadeOut {
+      to {opacity: 0; visibility: hidden;}
     }
 
-    .donation-container {
-      margin: 120px auto;
-      background: #1e1e1e;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+    /* --- Контент --- */
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(0, 50, 0, 0.85);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #000;
+      margin-top: 20px;
+      display: none; /* скрыто пока идёт интро */
+    }
+
+    h1 {
       text-align: center;
-      width: 340px;
+      color: #9acd32;
+      text-shadow: 2px 2px 5px black;
+      font-size: 1.8em;
     }
 
-    .progress-bar {
-      width: 100%;
-      background-color: #333;
-      border-radius: 5px;
-      overflow: hidden;
-      height: 25px;
+    .question {
       margin: 20px 0;
+      padding: 15px;
+      background: rgba(50, 100, 50, 0.8);
+      border-radius: 10px;
+      font-size: 1.05em;
     }
 
-    .progress {
-      height: 100%;
-      width: 0;
-      background-color: orange;
-      transition: width 0.3s ease;
+    .answers label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-size: 0.95em;
     }
 
     button {
-      padding: 10px 20px;
-      background-color: orange;
-      color: #121212;
+      background: #9acd32;
       border: none;
-      border-radius: 5px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 16px;
       cursor: pointer;
-      margin-top: 10px;
-      font-weight: bold;
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+      max-width: 250px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     button:hover {
-      background-color: #e69500;
+      background: #7fbf1f;
     }
 
-    .photo-inputs {
-      margin: 20px 0;
+    #result {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 20px;
     }
 
-    .photo-slot {
-      margin-bottom: 15px;
+    .gif {
+      text-align: center;
+      margin-top: 20px;
     }
 
-    input[type="file"] {
-      color: white;
+    .gif img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 15px black;
     }
 
-    .preview {
-      width: 100%;
-      max-height: 150px;
-      object-fit: cover;
-      margin-top: 5px;
-      border: 1px solid orange;
-      border-radius: 4px;
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1.4em;
+      }
+      .question {
+        font-size: 1em;
+      }
+      button {
+        font-size: 14px;
+        padding: 12px 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Интро экран -->
-  <div class="intro-screen" id="intro">
-    <h1>Дисклеймер!</h1>
-    <p>Внимание: данный сайт является шуткой и создан исключительно в развлекательных целях. Все персонажи, болезни и ситуации вымышлены. Любые совпадения с реальностью — случайны (или не очень).</p>
-    <button onclick="startSite()">Продолжить(Сначала включи крутую музыку)</button>
-    <audio controls>
-      <source src="4.mp3" type="audio/mpeg">
-      Ваш браузер не поддерживает аудио.
-    </audio>
+  <!-- Интро -->
+  <div id="intro">
+    <img src="https://i.postimg.cc/PqwSs4wy/image.jpg" alt="Arbuz Logo">
+    <h2>Arbuz Present</h2>
   </div>
 
-  <!-- Основной контент -->
-  <div id="main-content" style="display: none;">
-    <div class="donation-container">
-      <h1>Помогите Артему Пепси</h1>
-      <h2>Артем Пепси — молодой пикапер, музыкант, мотобрат. Он нуждается в вашей поддержке на лечение от болезни под названием "пубертат" — шишка дымится, а никто не даёт((</h2>
-      <p>Цель: собрать 10,000 ₽</p>
+  <!-- Контейнер с тестом -->
+  <div class="container" id="mainContent">
+    <h1>Тест по Шреку 🧅</h1>
 
-      <div class="progress-bar">
-        <div class="progress" id="progress"></div>
-      </div>
-      <p id="donated-amount">Собрано: 0 ₽</p>
-
-      <button onclick="donate()">Пожертвовать 500 ₽</button>
-
-      <div class="photo-inputs">
-        <div class="photo-slot">
-          <img id="preview1" class="preview" src="1.jpeg" alt="Фото 1" />
-        </div>
-        <div class="photo-slot">
-          <img id="preview2" class="preview" src="2.jpeg" alt="Фото 2" />
-        </div>
-        <div class="photo-slot">
-          <img id="preview3" class="preview" src="3.jpeg" alt="Фото 3" />
+    <form id="quizForm">
+      <div class="question">
+        <p>1. Что сказал Шрек о луке, сравнивая его с собой?</p>
+        <div class="answers">
+          <label><input type="radio" name="q1" value="0"> Лук делает всех плаксами</label>
+          <label><input type="radio" name="q1" value="1"> У лука есть слои, как и у него</label>
+          <label><input type="radio" name="q1" value="0"> Лук растёт на болоте</label>
         </div>
       </div>
+
+      <div class="question">
+        <p>2. Что Осёл попросил у Шрека, когда впервые встретился с ним?</p>
+        <div class="answers">
+          <label><input type="radio" name="q2" value="0"> Кусок пирога</label>
+          <label><input type="radio" name="q2" value="0"> Урок танцев</label>
+          <label><input type="radio" name="q2" value="1"> Чтобы тот защитил его</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>3. Как звали злодея в первом фильме?</p>
+        <div class="answers">
+
+<label><input type="radio" name="q3" value="1"> Лорд Фаркуад</label>
+          <label><input type="radio" name="q3" value="0"> Принц Чарминг</label>
+          <label><input type="radio" name="q3" value="0"> Король Гарольд</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>4. Во что превращалась Фиона по ночам до снятия заклятия?</p>
+        <div class="answers">
+          <label><input type="radio" name="q4" value="0"> В дракона</label>
+          <label><input type="radio" name="q4" value="1"> В огра</label>
+          <label><input type="radio" name="q4" value="0"> В мышь</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>5. Что Осёл сказал Дракону, когда они впервые встретились?</p>
+        <div class="answers">
+          <label><input type="radio" name="q5" value="1"> Что у неё красивые глаза</label>
+          <label><input type="radio" name="q5" value="0"> Что он не на обед</label>
+          <label><input type="radio" name="q5" value="0"> Что он ищет сокровища</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>6. Какую песню исполнил Осёл и Дракон в караоке после титров?</p>
+        <div class="answers">
+          <label><input type="radio" name="q6" value="0"> We Are The Champions</label>
+          <label><input type="radio" name="q6" value="1"> I’m a Believer</label>
+          <label><input type="radio" name="q6" value="0"> Eye of the Tiger</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>7. Какое животное Кот в сапогах использовал, чтобы разжалобить врагов?</p>
+        <div class="answers">
+          <label><input type="radio" name="q7" value="1"> Свои огромные глаза</label>
+          <label><input type="radio" name="q7" value="0"> Лягушку</label>
+          <label><input type="radio" name="q7" value="0"> Голубя</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>8. Чем закончилась свадьба Шрека и Фионы?</p>
+        <div class="answers">
+          <label><input type="radio" name="q8" value="0"> Лорд Фаркуад вернулся</label>
+          <label><input type="radio" name="q8" value="0"> Все герои разошлись</label>
+          <label><input type="radio" name="q8" value="1"> Танцами под песню «I’m a Believer»</label>
+        </div>
+      </div>
+
+      <button type="button" onclick="checkAnswers()">Проверить результат</button>
+    </form>
+
+    <div id="result"></div>
+    <div class="gif" id="gifBox" style="display:none;">
+      <img src="https://tenor.com/view/shrek-somebody-toilet-hi-gif-17332899.gif" alt="Shrek gif">
     </div>
   </div>
 
   <script>
-    let total = 0;
-    const goal = 10000;
-
-    function startSite() {
-      document.getElementById('intro').style.display = 'none';
-      document.getElementById('main-content').style.display = 'block';
-      document.getElementById('intro-audio').pause();
+    // показать контент после интро
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById("mainContent").style.display = "block";
+      }, 3000); // через 3 секунды
     }
 
-    function donate() {
-      if (total < goal) {
-        total += 500;
-        if (total > goal) total = goal;
-
-        const progressPercent = (total / goal) * 100;
-        document.getElementById("progress").style.width = progressPercent + "%";
-        document.getElementById("donated-amount").innerText = `Собрано: ${total} ₽`;
-
-        if (total === goal) {
-          alert("Ура мы величили Артема и он купит себе стояк риналду!!!");
-        }
+    function checkAnswers() {
+      let score = 0;
+      const form = document.forms['quizForm'];
+      for (let i = 1; i <= 8; i++) {
+        const answer = form['q' + i].value;
+        if (answer === "1") score++;
       }
+
+      // показываем гифку
+      document.getElementById('gifBox').style.display = "block";
+      document.getElementById('result').innerHTML = "";
+
+      // через 2 секунды выводим результат
+      setTimeout(() => {
+        document.getElementById('result').innerHTML =
+          "Ты набрал " + score + " из 8 очков! 🧅";
+      }, 2000);
     }
   </script>
-
 </body>
 </html>
