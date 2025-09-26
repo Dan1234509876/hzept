@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Тест по Шреку</title>
   <style>
+    
+    <div id="timer" style="font-size: 20px; color: white; text-align: center; margin-top: 20px;">
+  Время осталось: 10:00
+</div>
+    
     body {
       font-family: 'Comic Sans MS', sans-serif;
       background: url('https://i.postimg.cc/T1p90Jfn/1647057707-1-abrakadabra-fun-p-oboi-na-telefon-shrek-1.jpg') no-repeat center center fixed;
@@ -153,90 +158,128 @@
   <div class="container" id="mainContent">
     <h1>Тест по Шреку 🧅</h1>
 
-    <form id="quizForm">
-      <div class="question">
-        <p>1. Что сказал Шрек о луке, сравнивая его с собой?</p>
-        <div class="answers">
-          <label><input type="radio" name="q1" value="0"> Лук делает всех плаксами</label>
-          <label><input type="radio" name="q1" value="1"> У лука есть слои, как и у него</label>
-          <label><input type="radio" name="q1" value="0"> Лук растёт на болоте</label>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>2. Что Осёл попросил у Шрека, когда впервые встретился с ним?</p>
-        <div class="answers">
-          <label><input type="radio" name="q2" value="0"> Кусок пирога</label>
-          <label><input type="radio" name="q2" value="0"> Урок танцев</label>
-          <label><input type="radio" name="q2" value="1"> Чтобы тот защитил его</label>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>3. Как звали злодея в первом фильме?</p>
-        <div class="answers">
-
-<label><input type="radio" name="q3" value="1"> Лорд Фаркуад</label>
-          <label><input type="radio" name="q3" value="0"> Принц Чарминг</label>
-          <label><input type="radio" name="q3" value="0"> Король Гарольд</label>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>4. Во что превращалась Фиона по ночам до снятия заклятия?</p>
-        <div class="answers">
-          <label><input type="radio" name="q4" value="0"> В дракона</label>
-          <label><input type="radio" name="q4" value="1"> В огра</label>
-          <label><input type="radio" name="q4" value="0"> В мышь</label>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>5. Что Осёл сказал Дракону, когда они впервые встретились?</p>
-        <div class="answers">
-          <label><input type="radio" name="q5" value="1"> Что у неё красивые глаза</label>
-          <label><input type="radio" name="q5" value="0"> Что он не на обед</label>
-          <label><input type="radio" name="q5" value="0"> Что он ищет сокровища</label>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>6. Какую песню исполнил Осёл и Дракон в караоке после титров?</p>
-        <div class="answers">
-          <label><input type="radio" name="q6" value="0"> We Are The Champions</label>
-          <label><input type="radio" name="q6" value="1"> I’m a Believer</label>
-          <label><input type="radio" name="q6" value="0"> Eye of the Tiger</label>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>7. Какое животное Кот в сапогах использовал, чтобы разжалобить врагов?</p>
-        <div class="answers">
-          <label><input type="radio" name="q7" value="1"> Свои огромные глаза</label>
-          <label><input type="radio" name="q7" value="0"> Лягушку</label>
-          <label><input type="radio" name="q7" value="0"> Голубя</label>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>8. Чем закончилась свадьба Шрека и Фионы?</p>
-        <div class="answers">
-          <label><input type="radio" name="q8" value="0"> Лорд Фаркуад вернулся</label>
-          <label><input type="radio" name="q8" value="0"> Все герои разошлись</label>
-          <label><input type="radio" name="q8" value="1"> Танцами под песню «I’m a Believer»</label>
-        </div>
-      </div>
-
-      <button type="button" onclick="checkAnswers()">Проверить результат</button>
-    </form>
-
-    <div id="result"></div>
-    <div class="gif" id="gifBox" style="display:none;">
-      <img src="https://tenor.com/view/shrek-somebody-toilet-hi-gif-17332899.gif" alt="Shrek gif">
+<form id="quizForm">
+  <div class="question">
+    <p>1. Как Шрек объяснил Фионе, почему он живёт в одиночестве на болоте?</p>
+    <div class="answers">
+      <label><input type="radio" name="q1" value="0"> Потому что он боится людей</label>
+      <label><input type="radio" name="q1" value="0"> Чтобы избежать опасных приключений</label>
+      <label><input type="radio" name="q1" value="1"> Потому что любит уединение и тишину</label>
     </div>
   </div>
 
+  <div class="question">
+    <p>2. Что за предмет Осёл украл в замке Лорда Фаркуада, чтобы использовать его позже?</p>
+    <div class="answers">
+      <label><input type="radio" name="q2" value="0"> Кусок сыра</label>
+      <label><input type="radio" name="q2" value="1"> Перчатку тронного зала</label>
+      <label><input type="radio" name="q2" value="0"> Золотую монету</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>3. Какая деталь интерьера в комнате Фионы намекает на её проклятие?</p>
+    <div class="answers">
+      <label><input type="radio" name="q3" value="0"> Картина с луком</label>
+      <label><input type="radio" name="q3" value="1"> Песочные часы, которые идут назад</label>
+      <label><input type="radio" name="q3" value="0"> Статуэтка дракона</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>4. В каком именно моменте Шрек впервые произнёс фразу «Я лук» и в каком контексте?</p>
+    <div class="answers">
+      <label><input type="radio" name="q4" value="0"> Когда спорил с Ослом о красоте лугов</label>
+      <label><input type="radio" name="q4" value="1"> Когда объяснял Фионе, почему у него есть слои</label>
+      <label><input type="radio" name="q4" value="0"> Когда встречал Лорда Фаркуада</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>5. Чем Лорд Фаркуад пытался заманить Фиону в свой замок?</p>
+    <div class="answers">
+      <label><input type="radio" name="q5" value="0"> Обещанием короны</label>
+      <label><input type="radio" name="q5" value="0"> Подарком из золота</label>
+      <label><input type="radio" name="q5" value="1"> Лживым обещанием освобождения от проклятия</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>6. Какое блюдо заказал Лорд Фаркуад на ужин перед тем, как отправить Шрека за Фионой?</p>
+    <div class="answers">
+      <label><input type="radio" name="q6" value="0"> Суп из лука и трав</label>
+      <label><input type="radio" name="q6" value="1"> Куриный пирог с травами</label>
+      <label><input type="radio" name="q6" value="0"> Пирожки с мясом</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>7. Что Дракон прячет в своей пещере кроме Фионы?</p>
+    <div class="answers">
+      <label><input type="radio" name="q7" value="0"> Золото и драгоценности</label>
+      <label><input type="radio" name="q7" value="1"> Портрет Осла</label>
+      <label><input type="radio" name="q7" value="0"> Книгу с заклинаниями</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>8. Какое точное условие Лорд Фаркуад поставил Шреку, чтобы тот освободил Фиону?</p>
+    <div class="answers">
+      <label><input type="radio" name="q8" value="0"> Принести ему Книгу заклинаний</label>
+      <label><input type="radio" name="q8" value="1"> Принести Фиону в замок без свидетелей</label>
+      <label><input type="radio" name="q8" value="0"> Найти древний артефакт</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>9. Какая песня звучала во время сцены, когда Осёл и Дракон впервые встретились?</p>
+    <div class="answers">
+      <label><input type="radio" name="q9" value="0"> "Hallelujah"</label>
+      <label><input type="radio" name="q9" value="0"> "All Star"</label>
+      <label><input type="radio" name="q9" value="1"> "I'm a Believer" (кавер Smash Mouth)</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>10. Как Шрек отреагировал на предложение Лорда Фаркуада стать рыцарем?</p>
+    <div class="answers">
+      <label><input type="radio" name="q10" value="0"> Сразу согласился</label>
+      <label><input type="radio" name="q10" value="1"> Отказался с насмешкой</label>
+
+<label><input type="radio" name="q10" value="0"> Притворился больным</label>
+    </div>
+  </div>
+
+  <button type="button" onclick="checkAnswers()">Проверить результат</button>
+</form>
+
   <script>
+    let timeLeft = 600; // 600 секунд = 10 минут
+
+function startTimer() {
+  let timerDisplay = document.getElementById("timer");
+  let timerInterval = setInterval(function() {
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    if (seconds < 10) seconds = "0" + seconds;
+    timerDisplay.textContent = Время осталось: ${minutes}:${seconds};
+    timeLeft--;
+
+    if (timeLeft < 0) {
+      clearInterval(timerInterval);
+      timerDisplay.textContent = "Время вышло!";
+      closeTest();
+    }
+  }, 1000);
+}
+
+function closeTest() {
+  document.getElementById("quizForm").innerHTML = "<h2>Время истекло! Доступ закрыт.</h2>";
+  document.getElementById("quizForm").style.textAlign = "center";
+}
+
+window.onload = startTimer;
+    
     // показать контент после интро
     window.onload = function() {
       setTimeout(() => {
@@ -265,3 +308,4 @@
   </script>
 </body>
 </html>
+
